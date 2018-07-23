@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>predator prey simulation</title>
+		<link rel="icon" href="favicon.ico">
+		
+		<!-- the main style -->
+		<link rel="stylesheet" type="text/css" href="index.css">
+
+		<!-- npm init; npm i p5; -->
+		<script src="libs/p5/p5.min.js"></script>
+		<!-- https://plot.ly/javascript/getting-started/#download -->
+		<script src="libs/plotly.min.js"></script>
+
+	</head>
+
+	<body>
+		<div class="container">
+
+			<h1>Predator prey simulation</h1>
+			<h2>Alek Westover, highly esteemed dog of theland</h2>
+
+			<div id="txt-info">
+				<h3>Basic Idea:</h3>
+				<p>I want to see what happens with some animals that must compete for food</p>
+				<h3>Implementational details:</h3>
+				<p>
+				food will regenerate every eating cycle
+				if an animal becomes too hungry it will either consume food if food is availiable or
+				die of starvation if food is not availiable.
+				Hopefully this will impose logistic growth on the population
+				ie initially exponential growth and then food can't sustain the population 
+				in between feeding cycles animals hunger will increase and animals may reproduce
+				</p>
+				<h3>Simulation neglects:</h3>
+				<p>this simulation assumes food is instant gratification for a single animal
+				also this simulation neglects predators other special things and other users</p>
+				<h3>Additional information:</h3>
+				<p>You can mess with some of the variables with sliders below. Please enjoy the simulation.</p>
+			</div>
+
+			<div id="plots">
+				<div id="population-plot"></div>
+			</div>
+
+			<div id="canvas-holder">
+				<div id="slider-holder">
+					<p>Food delay:</p>
+					<input type="range" min="100" max="300" value="110" class="slider" id="foodDelay" onchange="updateFoodDelay();">
+
+					<p>Food ammmount:</p>
+					<input type="range" min="0" max="100" value="30" class="slider" id="foodAmmount" onchange="updateFoodAmmount();">
+				</div>
+			</div>
+
+		</div>
+
+		<!-- my code -->
+		<script src="sketch.js"></script>
+		<script src="functions.js"></script>
+
+	</body>
+
+</html>

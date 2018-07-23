@@ -1,0 +1,2 @@
+cv2 v=3.4.0
+pyscreenshot

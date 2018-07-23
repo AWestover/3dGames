@@ -1,6 +1,10 @@
 # cool games
 These are some cool games
 
+# predator prey simulation (ppsim)
+this is a cool model of what the population dynamics of theland _should_ be,
+a hope for what they one day _could_ be.
+
 # terrain thingy
 this is some 3d terrain. not theland yet.
 <a href="https://awestover.github.io/coolGames/terrain/public/">https://awestover.github.io/coolGames/terrain/public/</a>

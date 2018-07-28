@@ -1,0 +1,18 @@
+div {
+  text-align: center;
+}
+
+/* Grid stuff*/
+.container {
+  display: grid;
+}
+
+.left-half {
+  background: #ff9e2c;
+  grid-column: 1;
+}
+
+.right-half {
+  background: #b6701e;
+  grid-column: 2;
+}

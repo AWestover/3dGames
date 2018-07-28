@@ -1,0 +1,23 @@
+#!/bin/bash
+# this transfers over the files
+
+# to make this executable
+# chmod 755 transfer
+echo transfering files
+
+if [ -d "code" ]; then
+  rm -r code
+fi
+
+mkdir code
+cd ..
+cd theland
+
+
+# not really sure what this is
+#https://unix.stackexchange.com/questions/41693/how-to-copy-some-but-not-all-files
+shopt -s extglob
+cp -r !(node_modules) ../land-help/code
+shopt -u extglob
+
+echo complete

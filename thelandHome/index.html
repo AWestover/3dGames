@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- resize -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+  <title>The Land Home</title>
+
+  <!--jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!--bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+   <!-- p5 libraries-->
+  <script src="libraries/p5/p5.js" type="text/javascript"></script>
+  <script src="libraries/p5/addons/p5.dom.js" type="text/javascript"></script>
+  <!-- <script src="libraries/p5/addons/p5.sound.js" type="text/javascript"></script> -->
+
+  <!-- notification library -->
+  <script src="libraries/notify.js" type="text/javascript"></script>
+
+
+   <!-- main program -->
+  <script src="sketch.js" type="text/javascript"></script>
+
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+</head>
+
+
+<body>
+
+  <script>
+    $.notify("Redirected to the land", "success");
+  </script>
+
+  <div class="container">
+    
+    <h1>theland Home Page</h1>
+    <p>You may have been logged out to here because of inactivity, or you might have done something wrong. Go to main to play theland.</p>
+  
+    <div class="btns well well-lg">  
+    <button class="btn" id="button" style="margin:3%;" onclick='window.location.href = "https://theland.herokuapp.com/info.html";'>Help</button>
+    <button class="btn" id="button" style="margin:3%;" onclick='window.location.href = "https://theland.herokuapp.com/credits.html";'>Credits</button>
+    <button class="btn" id="button" style="margin:3%;" onclick='window.location.href = "https://thelandcontact.wordpress.com/contact/";'>Contact</button>
+    <button class="btn" id="button" style="margin:3%;" onclick='window.location.href = "https://theland.herokuapp.com";'>Main</button>
+    <div>
+
+    <div class="well well-lg">
+	<!--Note there is no point in making this a secret because the url is plain text... hopefully no one reads this, but even if they do I doubt they can get the passwords...-->
+        <label>life before death</label>
+	<input id="pwd"></input>
+        <button class="btn" onclick='verifyIdentity()'>Bashy number theroem thing (don't worry about it this is only for Alek really)</button>
+    </div>
+
+    <script>
+	function verifyIdentity()
+	{
+		if (document.getElementById('pwd').value=='kaladin')
+		{
+			window.location.href="https://repl.it/@awestover/breakPwdHash";
+		}
+		else
+		{
+			$.notify("you aren't a bridge man!", "error");
+		}
+	}
+    </script>
+
+  </div>
+
+</body>
+
+</html>

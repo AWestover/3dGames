@@ -10,6 +10,7 @@ let butterfly;
 
 let th = 0; let phi = 0;
 let off = [0, 0];
+let angles = [0, 0, 0];
 
 let lastDownY = 0;
 
@@ -102,6 +103,33 @@ function touchEnded()
 	}
 }
 
+function handleTilted()
+{
+	let threshold = 10;
+	if (deviceorientation == 'landscape')
+	{
+		$.notify("please rotate your phone");
+	}
+	if (angles[2] < -threshold)
+	{
+		th += 0.01;
+	}
+	else if (angles[2] > threshold)
+	{
+		th -= 0.01;
+	}
+
+	if (angles[1] < -threshold)
+	{
+		phi += 0.01;
+	}
+	else if (angles[1] > threshold)
+	{
+		phi -= 0.01;
+	}
+
+}
+
 function draw()
 {
 	background(0);
@@ -109,6 +137,7 @@ function draw()
 	
 	drawSun();
 	handleKeys();
+	handleTilted();
 
 	heights = surface(n, off);
 	hues = colorsH(heights);
@@ -137,3 +166,19 @@ function draw()
 	pop();
 
 }
+
+// accelerometer Data
+window.addEventListener('deviceorientation', function(e)
+{
+  angles[0] = e.alpha;
+  angles[1] = e.beta;
+  angles[2] = e.gamma;
+  for (let i = 0; i < 3; i++)
+  {
+    if (!angles[i])
+    {
+      angles[i]=0;
+    }
+  }
+});
+

@@ -10,7 +10,7 @@ a hope for what they one day _could_ be.
 
 # terrain thingy
 this is some 3d terrain. not theland yet.
-<a href="https://awestover.github.io/coolGames/terrain/public/">https://awestover.github.io/coolGames/terrain/public/</a>
+<a href="https://awestover.github.io/coolGames/terrain/">https://awestover.github.io/coolGames/terrain/</a>
 
 
 # for genetic dino game

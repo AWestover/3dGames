@@ -106,7 +106,7 @@ function touchEnded()
 function handleTilted()
 {
 	let threshold = 10;
-	if (deviceorientation == 'landscape')
+	if (deviceOrientation == 'landscape')
 	{
 		$.notify("please rotate your phone");
 	}

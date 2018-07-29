@@ -35,22 +35,22 @@ function updateAnimals(animals, foods)
 	return {"animals": newAnimals, "foods": foods};
 }
 
-function initPlot(plotDiv)
-{
-	Plotly.plot( plotDiv, [{ y: [], name: "population" }] );
-	Plotly.plot( plotDiv, [{ y: [], name: "food" }] );
-}
+// function initPlot(plotDiv)
+// {
+// 	Plotly.plot( plotDiv, [{ y: [], name: "population" }] );
+// 	Plotly.plot( plotDiv, [{ y: [], name: "food" }] );
+// }
 
-function resetPlot(plotDiv)
-{
-	Plotly.purge(plotDiv);
-	initPlot(plotDiv);
-}
+// function resetPlot(plotDiv)
+// {
+// 	Plotly.purge(plotDiv);
+// 	initPlot(plotDiv);
+// }
 
-function updatePlot(nPopulation, nFood, plotDiv)
-{
-	Plotly.extendTraces(plotDiv, { y: [nPopulation, nFood] }, [0, 1]);
-}
+// function updatePlot(nPopulation, nFood, plotDiv)
+// {
+// 	Plotly.extendTraces(plotDiv, { y: [nPopulation, nFood] }, [0, 1]);
+// }
 
 function updateFoodDelay()
 {
@@ -61,4 +61,20 @@ function updateFoodDelay()
 function updateFoodAmmount()
 {
 	numFoods = int(document.getElementById('foodAmmount').value);
+}
+
+
+function initTestPlot()
+{
+	Plotly.plot( 'population-plot', [{ y: [], name: "population" }], { 
+		title:' population plot'
+	});
+	Plotly.plot( 'population-plot', [{ y: [], name: "food" }] );
+}
+
+function drawPlot()
+{
+	Plotly.extendTraces('population-plot', { y: [lastPops, lastFoods] }, [0, 1]);
+	lastPops = [];
+	lastFoods = [];
 }

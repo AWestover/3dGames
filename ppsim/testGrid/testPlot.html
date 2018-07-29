@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../libs/plotly.min.js"></script>
+    <title>test plot</title>
+  </head>
+<body>
+  <div id="plots">
+    <div id="population-plot"></div>
+  </div>
+
+  <script>
+var N = 1e6;
+
+var x = new Array(N),
+    y = new Array(N);
+
+for(var i=0; i<N; i++) {
+    x[i] = Math.random();
+    y[i] = Math.random();
+}
+    
+Plotly.plot('population-plot', [{
+  type: 'scattergl',
+  mode: 'markers',
+  x: x,
+  y: y
+}], {
+  title: '1 million random points',
+  xaxis: { range: [-0.1,1.1] },
+  yaxis: { range: [-0.1,1.1] }
+});
+  </script>
+</body>
+</html>

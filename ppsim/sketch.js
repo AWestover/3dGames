@@ -17,12 +17,17 @@ let nPopulation = []; // all population info
 let cyclePopulation = []; // population from this cycle (to append to graph)
 let nFood = [];
 
+let lastPops = [];
+let lastFoods = [];
+
 // simulation variables
 let foods; // how much food is availiable
 let animals; // animals are defined only by their hunger
 let time; // to reset the food
 
 let dogPic;
+
+let fastMode = true;
 
 function preload()
 {
@@ -37,7 +42,42 @@ function setup()
 	foods = numFoods; time = 0;
 	animals = initAnimals(initPopulation);
 
-	initPlot(plotDiv);
+	// initPlot(plotDiv);
+	initTestPlot();
+
+	if (windowWidth < 600)
+	{
+		if (confirm("I think your device is too slow to really \
+			see the graphics, is it OK if I take it down a notch for you?"))
+		{
+			fastMode = false;
+		}
+		else
+		{
+			fastMode = true;
+		}
+	}
+	else
+	{
+		if (confirm("I think your device is cool enough to take some intense graphics \
+			is it OK if I turn on the extra graphics for you?"))
+		{
+			fastMode = true;
+		}
+		else
+		{
+			fastMode = false;
+		}
+	}
+
+	if (fastMode)
+	{
+		setInterval(drawPlot, 250);
+	}
+	else
+	{
+		setInterval(drawPlot, 2000);	
+	}
 }
 
 function draw()
@@ -60,20 +100,26 @@ function draw()
 	
 	// display population dynamics
 	nPopulation.push(animals.length);
-	updatePlot([animals.length], [foods], plotDiv);
+	// updatePlot([animals.length], [foods], plotDiv);
 	nFood.push(foods);
 
-	if (time % 10 == 0)
-	{
-		background(100, 100, 100);
-		for (let i = 0; i < animals.length; i++)
-		{
-			image(dogPic, width*random(), height*random());	
-		}
+	lastFoods.push(foods);
+	lastPops.push(animals.length);
 
-		if (time % 2000 == 0)
+	if (fastMode)
+	{
+		if (time % 10 == 0)
 		{
-			resetPlot(plotDiv);
+			background(100, 100, 100);
+			for (let i = 0; i < animals.length; i++)
+			{
+				image(dogPic, width*random(), height*random());	
+			}
+
+			// if (time % 2000 == 0)
+			// {
+			// 	// resetPlot(plotDiv);
+			// }
 		}
 	}
 }

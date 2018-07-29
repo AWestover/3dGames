@@ -46,4 +46,3 @@ or something similar
 On windows it will be much harder
 http://pyopengl.sourceforge.net/
 
-

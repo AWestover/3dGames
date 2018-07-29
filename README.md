@@ -7,7 +7,7 @@ a hope for what they one day _could_ be.
 <a href="https://awestover.github.io/coolGames/ppsim/">https://awestover.github.io/coolGames/ppsim/</a>
 
 # unrelated (not even in this repo) site
-cool game nonetheless
+a cool game nonetheless
 <a href="https://awestover.github.io/theland-conquest/public/">https://awestover.github.io/theland-conquest/public/</a>
 
 # terrain thingy

@@ -27,12 +27,23 @@ except:
             "as command line argument")
     sys.exit()
 
+try:
+  if sys.argv[3] == "no":
+    resize = False
+  else: 
+    resize = True
+except:
+  resize = True
 
 if not os.path.exists("batch"):
     os.mkdir("batch")
 
 imgTransparent(fName, inPlace=False)
-imgResize(join("batch", fName), newSize, save=True, inPlace=True)
+if resize:
+  imgResize(join("batch", fName), newSize, save=True, inPlace=True)
+else:
+  os.system("cp {0} batch/{0}".format(fName))
+
 for i in range(0, maxLvl+1):
     splt = fName.split(".png")
     cFName = splt[0] + str(i) + splt[1] + ".png"

@@ -1,1 +1,1 @@
-web: gunicorn faceParser:app
+web: gunicorn faceParser:faceParser

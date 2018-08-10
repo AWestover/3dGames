@@ -25,19 +25,9 @@ def create_app(test_config=None):
         im_data = request.values['data_uri']
         im_data = im_data.replace('data:image/jpeg;base64,', '')
         im = Image.open(BytesIO(base64.b64decode(im_data)))
-        c_hour = datetime.datetime.now().hour
-        c_date = datetime.datetime.now().strftime('%H:%M:%S_.png') 
-        imgDir = "faceParser/static/img"
-        for f in os.listdir(imgDir):
-            # cc_hour = int(f[:2])
-            # if abs(cc_hour - c_hour) > 1:
-            os.remove(join(imgDir, f)) 
-        # im.save(join(imgDir, c_date))
-        NUMCOLORS = 7
-        imgRecolor(im, NUMCOLORS, join(imgDir, c_date))
-        return jsonify(
-                {
-                    "path": join('static', 'img', c_date)
-                })
-
+        NUMCOLORS = int(request.values['num_colors'])
+        res_uri = imgRecolor(im, NUMCOLORS).decode('utf-8')
+        res_uri = 'data:image/jpeg;base64,' + res_uri
+        return jsonify({"path": res_uri})
+        
     return app

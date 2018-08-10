@@ -1,7 +1,11 @@
 # scramble all colors (assumes there is a small discrete ammount of colors)
+
+import os
+import base64
+from io import BytesIO
+
 from PIL import Image
 import numpy as np
-import os
 
 
 # K means algorithm
@@ -54,7 +58,7 @@ def getImgMids(imgObject, k):
 	
 	return fitpts
 
-def imgRecolor(imgObject, numColors, saveLoc):
+def imgRecolor(imgObject, numColors):
 	img = imgObject
 	mids = getImgMids(imgObject, numColors)
 	mids = mids.astype(int)
@@ -77,7 +81,12 @@ def imgRecolor(imgObject, numColors, saveLoc):
 			newDatas.append(tuple(newColors[nextColor]))
 
 	img.putdata(newDatas)
-	img.save(saveLoc)
+	
+	# save as a base64 string
+	buffered = BytesIO()
+	img.save(buffered, format="PNG")
+	img_str = base64.b64encode(buffered.getvalue())
+	return img_str
 
 if __name__ == "__main__":
 	imgRecolor(Image.open("static/img/00:49:50_.png"), 7, 'static/img/test3.png')

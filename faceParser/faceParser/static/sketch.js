@@ -9,15 +9,15 @@ Webcam.set({
 Webcam.attach('#webcam');
 function takeScreenshot()
 {
-  $.notify("Picture submitted to be altered")
+  $.notify("Picture submitted to be altered", "success")
   Webcam.snap(function(data_uri){
-    document.getElementById('results').innerHTML = '<img src='+data_uri+'>';
-    $.post("/upload", {"data_uri": data_uri}, function(data)
+    $('#results').html('<img src='+data_uri+'>');
+    $.post("/upload", {"data_uri": data_uri, "num_colors": $('#num_colors').val()}, function(data)
       {
-          $.notify("Your face has arrived");
+          $.notify("Your face has arrived", "success");
           let imgPath = data["path"];
-          $("body").append("<img src='" + imgPath + "'>");
-          window.scrollTo(0,document.body.scrollHeight);
+          $("#output_pics").append("<img src='" + imgPath + "'>");
+          window.scrollTo(0, document.body.scrollHeight);
       });
   })
 }

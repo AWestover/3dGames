@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import datetime
 from flask import Flask, redirect, render_template, request, session, url_for, jsonify
 
+from faceParser.recolor import *
 
 def create_app(test_config=None):
     # create and configure the app
@@ -24,17 +25,19 @@ def create_app(test_config=None):
         im_data = request.values['data_uri']
         im_data = im_data.replace('data:image/jpeg;base64,', '')
         im = Image.open(BytesIO(base64.b64decode(im_data)))
-        plt.imshow(im)
         c_hour = datetime.datetime.now().hour
         c_date = datetime.datetime.now().strftime('%H:%M:%S_.png') 
         imgDir = "faceParser/static/img"
-        plt.savefig(join(imgDir, c_date))
         for f in os.listdir(imgDir):
-            cc_hour = int(f[:2])
-            if abs(cc_hour - c_hour) > 1:
-                os.remove(join(imgDir, f))            
-        return jsonify({
-            "path": join('static', 'img', c_date)
-        })
+            # cc_hour = int(f[:2])
+            # if abs(cc_hour - c_hour) > 1:
+            os.remove(join(imgDir, f)) 
+        # im.save(join(imgDir, c_date))
+        NUMCOLORS = 7
+        imgRecolor(im, NUMCOLORS, join(imgDir, c_date))
+        return jsonify(
+                {
+                    "path": join('static', 'img', c_date)
+                })
 
     return app

@@ -6,6 +6,13 @@
     
     <script src="{{ url_for('static', filename='libs/webcam.min.js') }}"></script>
     <script src="{{ url_for('static', filename='libs/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='libs/notify.js') }}"></script>
+    
+    <style>
+      body {
+        background-color: lightgrey;
+      }
+    </style>
   </head>
   <body>
     {% block content %}{% endblock %}

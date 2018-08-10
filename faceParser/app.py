@@ -28,3 +28,8 @@ def upload():
     return jsonify({"path": res_uri})
         
     return app
+
+
+if __name__ == "__main__":
+  app.run(debug=True, use_reloader=True)
+

@@ -5,18 +5,17 @@ Webcam.set({
   image_format: "jpeg",
   jpeg_quality: 90
 });
+
 Webcam.attach('#webcam');
-let url;
 function takeScreenshot()
 {
-    Webcam.snap(function(data_url){
-      document.getElementById('results').innerHTML = '<img src='+data_url+'>';
-      console.log(data_url);
-      url = data_url;
+    Webcam.snap(function(data_uri){
+      document.getElementById('results').innerHTML = '<img src='+data_uri+'>';
+      $.post("/upload", {"data_uri": data_uri}, function(data)
+        {
+            alert("posted");
+            let imgPath = data["path"];
+            $("body").append("<img src='" + imgPath + "'>");
+        });
     })
 }
-
-Webcam.upload( base64image, '/upload', function(code, text) {
- console.log(code);
- console.log(text);
-});

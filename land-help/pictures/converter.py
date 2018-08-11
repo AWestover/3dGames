@@ -37,6 +37,6 @@ if __name__ == "__main__":
 			if ".png" in file:
 				imgTransparent(file)
 	else:
-		imgTransparent("iii.png", inPlace=True)
+		imgTransparent("cow.png", inPlace=True)
 
 

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='libs/plotly.min.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>test</h1>
+  <div id="channel1"></div>
+  <div id="channel2"></div>
+</div> 
+
+<script>
+// initialize the plots
+Plotly.plot('channel1', [{y:[0,0]}]);
+Plotly.plot('channel2', [{y:[0,0]}]);
+
+function updatePlot(data) {
+  for (let i = 1; i <= 2; i++)
+  {
+    Plotly.update('channel'+i, {y:[data[i-1]]});
+  }
+}
+
+function drawSignal()
+{
+  $.get('/stream', function(data){
+      if(data && data.length>1)
+      {
+        let pData = JSON.parse(data);
+        updatePlot(pData);
+      }
+  });
+}
+
+setInterval(drawSignal, 200);
+</script>
+{% endblock %}

@@ -6,21 +6,32 @@
 
 {% block content %}
 <div class="container">
-  <h1>test</h1>
-  <div id="channel1"></div>
-  <div id="channel2"></div>
+  <h1>eeg coma prognostication</h1>
+  <br><br><br>
+  <div id="spectogram"></div>
+  <div id="signal"></div>
+  <div id="prediction"></div>
 </div> 
 
 <script>
 // initialize the plots
-Plotly.plot('channel1', [{y:[0,0]}]);
-Plotly.plot('channel2', [{y:[0,0]}]);
+let data = [
+  {y: [0,0], yaxis: 'y1', name: 'channel 1'},
+  {y: [0,0], yaxis: 'y2', name: 'channel 2'}
+]
+let layout = {
+  yaxis1: {domain: [0, 0.5], range: [-3, 3], title: "channel 1"},
+  legend: {traceorder: 'reversed'},
+  showlegend: false,
+  margin: {t: 20},
+  height: 400,
+  yaxis2: {domain: [0.5, 1], range: [-3, 3], title: "channel 2"}
+}
+Plotly.plot('signal', data, layout);
 
 function updatePlot(data) {
-  for (let i = 1; i <= 2; i++)
-  {
-    Plotly.update('channel'+i, {y:[data[i-1]]});
-  }
+  let new_data = {y: [data[0], data[1]]};
+  Plotly.update('signal', new_data);
 }
 
 function drawSignal()
@@ -35,5 +46,39 @@ function drawSignal()
 }
 
 setInterval(drawSignal, 200);
+
+
+// test spectogram
+let zz = [];
+for (let i = 0; i < 100; i++)
+{
+  zz.push([]);
+  for (let j = 0; j < 100; j++)
+  {
+      zz[i].push(Math.sin(i+j+Math.random()*0.7+Math.random()*0.3));
+  }
+}
+
+Plotly.plot('spectogram', [{
+  z: zz, 
+  colorbar: {title: 'power'}, 
+  colorscale: [['0', 'rgb(0,0,0)'], ['0.15', 'rgb(30,0,100)'], ['0.4', 'rgb(120,0,100)'], ['0.6', 'rgb(160,90,0)'], ['0.8', 'rgb(230,200,0)'], ['1', 'rgb(255,250,220)']], 
+  dx: 1, 
+  dy: 1, 
+  name: 'power', 
+  type: 'heatmap', 
+  uid: 'b1c78a',
+  x0: 0, 
+  y0: 0, 
+  zauto: false,
+  zmax: 1,
+  zmin: 0
+}], {
+  margin: {t:40},
+  height: 300 
+});
+
+Plotly.plot('prediction', [{y:[0,0.1,0.2,0,0.5,0.7,0.9,0.4,0.2]}], {margin: {t: 0}, height : 200, yaxis: {title: "recovery probability"}})
+
 </script>
 {% endblock %}

@@ -1,3 +1,7 @@
 body {
   background-color: lightgrey;
 }
+
+#prediction, #signal, #spectogram {
+  margin-top: -20px;
+}

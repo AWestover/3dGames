@@ -13,13 +13,21 @@ x = np.zeros((NUM_CHANELS, SECS*Fs))
 # init data to zeros
 fig, (ax1, ax2) = plt.subplots(1, 2)
 
+t = 0
+
 while True:
     time.sleep(0.2)
+    t += 0.2
     
     # shift back the data 1 second
     x[:, :-1*Fs] = x[:, 1*Fs:]
     # get new data
-    x[:, -1*Fs:] = np.random.random((2, 1*Fs))
+    # x[:, -1*Fs:] = np.random.random((2, 1*Fs))
+    new_data = np.array([
+        np.sin(np.linspace(t, t+3, 1*Fs))+np.random.random((1*Fs)), 
+        np.cos(np.linspace(t, t+3, 1*Fs))+np.random.random((1*Fs))
+    ])
+    x[:, -1*Fs:] = new_data
     
     # plot signal
     ax1.cla()

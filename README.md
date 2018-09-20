@@ -1,5 +1,6 @@
 # cool games
 These are some cool games
+<img src="coolGames">
 
 # predator prey simulation (ppsim)
 this is a cool model of what the population dynamics of theland _should_ be,

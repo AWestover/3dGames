@@ -8,7 +8,7 @@ from os.path import join
 import shutil
 
 MAXLVLS = [4,1,1]
-COLORS = 10
+COLORS = 3
 
 sizes = [(66, 50), (30, 30), (75, 100)]
 try:

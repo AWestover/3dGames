@@ -35,11 +35,11 @@ def deterministicRecolor(imgPath, change, saveFile=None, show=False):
 folder = "aldenImgs"
 if __name__ == "__main__":
 	for c in range(4):
-		change = np.array([np.random.randint(0,255) for i in range(3)] + [0]).astype("uint8")
+		change = np.array([np.random.randint(0,100) for i in range(3)] + [0]).astype("uint8")
 		if c == 0:
 			change *= 0
 		for file in os.listdir(folder):
-			if "fly" in file and ".png" in file and "-" not in file:
+			if "butterfly" in file and ".png" in file and "-" not in file:
 				sf = file.replace(".png", "-{}.png".format(c+1))
 				sf = os.path.join(folder, sf)
 				print("deterministicRecoloring " + file)		

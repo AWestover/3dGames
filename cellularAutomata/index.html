@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>game of life</title>
+</head>
+<body>
+<script type="text/javascript" src="p5.min.js"></script>
+<script type="text/javascript">
+let N = 100; // number of squares
+let s = 5; // side length
+let initPR = 0.3;
+let arr = [];
+let ct = 0;
+
+function countNeighbors(i,j){
+	let ct = 0;
+	for (var ii = -1; ii <= 1; ii++) {
+		for (var jj = -1; jj <= 1; jj++) {
+			if(ii != 0 || jj != 0) {
+				if(i+ii > 0 && j+jj > 0 && i+ii < N && j+jj < N) {
+					if (arr[i+ii][j+jj]) {
+						ct += 1;
+					}
+				}
+			}
+		}
+	}
+	return ct;
+}
+
+function transition() {
+	let out = [];
+	for (var i = 0; i < N; i++) {
+		out.push([]);
+		for (var j = 0; j < N; j++) {
+			let n = countNeighbors(i, j);
+			if(arr[i][j]) {
+				if(n == 2 || n == 3)
+					out[i].push(true)
+				else // n<2 || n > 3
+					out[i].push(false)
+			}
+			else {
+				if (n==3)
+					out[i].push(true)
+				else
+					out[i].push(false)
+			}
+		}
+	}
+	arr = out;
+}
+
+function setSimpleState(toFill) {
+	let out = [];
+	for (var i = 0; i < N; i++) {
+		out.push([]);
+		for (var j = 0; j < N; j++) {
+			out[i].push(false)
+		}
+	}
+	for (var i = 0; i < toFill.length; i++) {
+		out[toFill[i][0]][toFill[i][1]] = true;
+	}
+	arr = out;
+}
+
+function setRandomState() {
+	let out = [];
+	for (var i = 0; i < N; i++) {
+		out.push([]);
+		for (var j = 0; j < N; j++) {
+			if(random()<initPR)
+				out[i].push(true)
+			else
+				out[i].push(false)
+		}
+	}
+	arr = out;
+}
+
+function setup() {
+	createCanvas(s*N,s*N);
+	setRandomState();
+	// setSimpleState([[25,25],[25,26],[25,27]]);
+	frameRate(5);
+}	
+
+function draw() {
+	background(0);
+	noStroke();
+	fill(255,255,255);
+	for (var i = 0; i < N; i++) {
+		for (var j = 0; j < N; j++) {
+			if(arr[i][j]) {
+				rect(s*i,s*j,s,s);	
+			}
+		}
+	}
+	transition();
+	ct += 1;
+	// if (ct % 1000 == 999)
+		// setRandomState();
+}
+</script>
+</body>
+</html>

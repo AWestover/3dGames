@@ -6,6 +6,8 @@ This is a pretty cool simulation
 
 Conway's game of life: very simple rules, very complex game
 
+<a href="http://alek-automata.surge.sh/">http://alek-automata.surge.sh/</a>
+
 <img src="cellularAutomata/cellularAutomata.png">
 
 <img src="coolGames.png">

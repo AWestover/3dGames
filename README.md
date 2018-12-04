@@ -1,5 +1,13 @@
 # cool games
 These are some cool games
+
+# cellular Automata
+This is a pretty cool simulation
+
+Conway's game of life: very simple rules, very complex game
+
+<img src="cellularAutomata/cellularAutomata.png">
+
 <img src="coolGames.png">
 
 # predator prey simulation (ppsim)

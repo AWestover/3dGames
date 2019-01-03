@@ -1,5 +1,8 @@
 *.pyc
 
+# annoying mac folder location files
+.DS_Store
+
 # node stuff
 node_modules/
 
